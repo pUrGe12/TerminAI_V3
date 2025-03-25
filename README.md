@@ -23,12 +23,13 @@ Can I have multiple databases??!! This will then be the structure
 
 ```
 
-In words:
+![Flow diagram with LVS](./images/TerminAI_V3.png)
 
-I have a commands vector DB. Each command in there is `linked` to its description in the description database. Each description is linked to a flags database, which essentially stores all the flags for that particular description. Each flag in the flag database is then linked to each description in the flag_description database (which must be equal to the number of flag databases).
 
-Then when the user creates a prompt, we embed that, pass it into the flag desc DBs (all of them) and description DB. Then we backtract using the links to the commands and select the best ones (along with the right flags)
+The explicit parts of LVS are as shown below:
 
-Pass that to the gemini model and give it the prompt, tell it to figure out the best command for the job. 
+![LVS parts](./images/linked_vector_system_parts.png)
 
-THIS WILL BE MUCH RELIABLE.
+---
+
+## Creating a vDB
