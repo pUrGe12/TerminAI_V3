@@ -1,0 +1,18 @@
+[project]
+name = "terminai-v3"
+version = "0.1.0"
+description = "An AI based terminal with linked vector systems to execute commands in natural language"
+authors = [
+    {name = "pUrGe12",email = "helloitsme0218@gmail.com"}
+]
+license = {text = "MIT"}
+readme = "README.md"
+requires-python = ">=3.10"
+dependencies = [
+    "pyqt5 (>=5.15.11,<6.0.0)"
+]
+
+
+[build-system]
+requires = ["poetry-core>=2.0.0,<3.0.0"]
+build-backend = "poetry.core.masonry.api"

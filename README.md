@@ -1,5 +1,20 @@
 # TerminAI_V3
 
+
+## Installing and running
+
+This project depends on poetry. To install the necessary dependencies and run TerminAI
+
+		poetry run python3 terminai.py
+
+To add a certain dependency, run
+
+		poetry add <name>
+
+---
+
+## About
+
 A python based terminal with AI capabilities, line of thought and history.
 
 Improvements over version 2:
@@ -33,3 +48,7 @@ The explicit parts of LVS are as shown below:
 ---
 
 ## Creating a vDB
+
+TBD
+
+---
