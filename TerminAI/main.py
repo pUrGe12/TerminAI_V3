@@ -1,7 +1,7 @@
 from PyQt5.QtWidgets import QApplication
 import sys
 
-from TerminAI.GUI.gui import ModernTerminal
+from TerminAI.display.gui import ModernTerminal
 
 def run():
 	app = QApplication(sys.argv)

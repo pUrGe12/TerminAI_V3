@@ -4,7 +4,8 @@ from PyQt5.QtWidgets import QApplication, QWidget, QVBoxLayout, QTextEdit, QLine
 from PyQt5.QtGui import QFont, QTextCursor
 from PyQt5.QtCore import Qt, QTimer
 
-from TerminAI.GUI.utils.config import Config
+from TerminAI.utils.config import Config
+from TerminAI.models.generic_ import generic_replier
 
 os.environ["QT_QPA_PLATFORM"] = "wayland"
 
