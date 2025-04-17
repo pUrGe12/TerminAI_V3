@@ -4,8 +4,14 @@ from PyQt5.QtWidgets import QApplication, QWidget, QVBoxLayout, QTextEdit, QLine
 from PyQt5.QtGui import QFont, QTextCursor
 from PyQt5.QtCore import Qt, QTimer
 
+# Set the root directory as a traversable path
+DIR_PATH = os.path.dirname(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
+
+if DIR_PATH not in sys.path:
+    sys.path.insert(0, DIR_PATH)
+
 from TerminAI.utils.config import Config
-from TerminAI.models.generic_ import generic_replier
+from TerminAI.models.generic_ import generate_generic_response
 
 os.environ["QT_QPA_PLATFORM"] = "wayland"
 
@@ -101,9 +107,8 @@ class ModernTerminal(QWidget):
 
 
     def process(self, prompt):
-   	    """Gotta add processing logic here"""
-   	    return prompt
-
+        # Testing the generic response
+        return generate_generic_response(prompt, [])
 
     def init_start(self):
         '''
@@ -112,9 +117,6 @@ class ModernTerminal(QWidget):
             2. This appends the prompt bar and calls the "generating response..." text while we process in the behind 
             3. Ensures that the cursor stays at the bottom of the screen
             4. Then calls the worker class for processing
-
-        The worker class is initialised here, passed to it is the user's prompt. Then once the result is ready, it calls the display_response function.
-        This is all threaded and it's always listening for a response.
 
         Finally it clears the input field for new prompts.
         '''

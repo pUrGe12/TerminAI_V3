@@ -26,7 +26,7 @@ class Models:
 	region before using it. Else stick to the default.
 	"""
 	project_id = "terminai-456107"
-	location = "us-cental1"
+	location = "us-central1"
 	model_ = "google/gemini-2.0-flash-001"
 	credentials_url = "https://www.googleapis.com/auth/cloud-platform"
 	g_openai_url = "https://{location}-aiplatform.googleapis.com/v1/projects/{project_id}/locations/{location}/endpoints/openapi"
