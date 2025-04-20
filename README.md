@@ -2,6 +2,12 @@
 
 Refer to [this gcloud setup](./docs/setting_vertexai.md) to ensure you have the right tools to start. 
 
+
+## Remaining work
+
+- [x] Run .process in a thread so that it doesn't intefere with the GUI.
+
+
 ## Installing and running
 
 This project depends on poetry. To install the necessary dependencies and run TerminAI

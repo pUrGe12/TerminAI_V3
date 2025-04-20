@@ -2,7 +2,7 @@ import sys
 import os
 from PyQt5.QtWidgets import QApplication, QWidget, QVBoxLayout, QTextEdit, QLineEdit
 from PyQt5.QtGui import QFont, QTextCursor
-from PyQt5.QtCore import Qt, QTimer
+from PyQt5.QtCore import Qt, QTimer, QThread, pyqtSignal, QObject
 
 # Set the root directory as a traversable path
 DIR_PATH = os.path.dirname(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
@@ -14,6 +14,19 @@ from TerminAI.utils.config import Config
 from TerminAI.models.generic_ import generate_generic_response
 
 os.environ["QT_QPA_PLATFORM"] = "wayland"
+
+
+class Worker(QObject):
+    finished = pyqtSignal(str)
+
+    def __init__(self, prompt):
+        super().__init__()
+        self.prompt = prompt
+
+    def run(self):
+        result = generate_generic_response(self.prompt, [])
+        self.finished.emit(result)
+
 
 class ModernTerminal(QWidget):
     '''
@@ -150,8 +163,17 @@ class ModernTerminal(QWidget):
             self.terminal_display.moveCursor(QTextCursor.End)       # Ensuring that the cursor stays at the bottom
             QApplication.processEvents()
 
-            output = self.process(self.current_prompt)
-            self.display_response(output)
+            self.thread = QThread()
+            self.worker = Worker(self.current_prompt)
+            self.worker.moveToThread(self.thread)
+
+            self.thread.started.connect(self.worker.run)
+            self.worker.finished.connect(self.display_response)
+            self.worker.finished.connect(self.thread.quit)
+            self.worker.finished.connect(self.worker.deleteLater)
+            self.thread.finished.connect(self.thread.deleteLater)
+
+            self.thread.start()
         self.input_field.clear()
 
 
